@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const { GridFsStorage } = require("multer-gridfs-storage");
 const app = express();
 const employeeRouter = require('./Routes/employeeRoute')
 const userRouter = require('./Routes/userRoute')
@@ -24,14 +23,6 @@ app.use("/api/emp",employeeRouter)
 
 mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection
-
-let bucket;
-db.on("connectd", () => {
-    bucket = new mongoose.mongo.GridFSBucket(db, {
-        bucketName: "newBucket"
-    });
-    console.log(bucket);
-})
 
 db.on("error", (err) => {
     console.log(err);

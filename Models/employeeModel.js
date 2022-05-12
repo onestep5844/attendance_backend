@@ -19,6 +19,10 @@ const employeeDetails = mongoose.Schema({
    },
    bloodGroup: {
        type: String,
+   },
+   img:{
+       type: Buffer,
+       contentType: String
    }
 })
 
